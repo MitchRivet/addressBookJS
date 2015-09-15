@@ -10,3 +10,20 @@
 .contact:hover {
   text-decoration: underline;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.element {
+  .center-block();
+}
