@@ -31,7 +31,7 @@ function resetFields() {
 }
 
 function createNewFields() {
-  $("#new-addresses").append('<div class="new-address">' +
+  $("#new-addresses").append('<div class="fademe2"><div class="new-address">' +
                               '<div class="form-group">' +
                                   '<label for="new-street">Street</label>' +
                                   '<input type="text" class="form-control new-street">' +
@@ -51,7 +51,10 @@ function createNewFields() {
                                       '<option>Home</option>' +
                                   '</select>' +
                                 '</div>' +
-                            '</div>');
+                            '</div></div>');
+
+                            $(".fademe2").hide().fadeIn();
+                            $( ".fademe2" ).removeClass('fademe2').addClass('fadedme2 ');
 }
 
 function saveContacts() {
@@ -62,44 +65,40 @@ function saveContacts() {
 
 }
 
-// function showContact() {
-//
-// }
-
-// function saveAddresses() {
-//   var inputtedStreet = $(this).find("input.new-street").val();
-//   var inputtedCity = $(this).find("input.new-city").val();
-//   var inputtedState = $(this).find("input.new-state").val();
-//
-//   newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
-//   newContact.addresses.push(newAddress);
-// }
-
 function listContacts() {
 
-    $("ul#contacts").append("<div class='fademe1'><li><span class='contact'>" + newContact.fullName() + "</span></li></div>");
+    $("ul#contacts").append("<div class='fademe1'><li class = 'hover'><span class='contact'>" + newContact.fullName() + "</span></li></div>");
     $(".fademe1").hide().fadeIn();
     $( ".fademe1" ).removeClass('fademe1').addClass('fadedme');
 
 }
-// $( "#book" ).fadeIn( "slow", function() {
-//    // Animation complete
-//  });
 
-//
+i=0;
+
 $(document).ready(function() {
   //add another address button
   $("#add-address").click(function() {
     createNewFields();
   });
 
-  $("#poop").click(function() {
-    $("#added_poop").hide().fadeIn();
+  $(".hover").hover(function() {
+  $( this ).fadeOut( 500 );
+  $( this ).fadeIn( 500 );
   });
+
+  $(".count").keypress(function() {
+    $(".count").text(i += 1);
+  });
+
+  $(".btn").click(function() {
+    $(".count").keypress();
+  });
+
   //submit "add" and create new contact obj.
   $("form#new-contact").submit(function(event) {
       event.preventDefault();
       saveContacts();
+
 
     $(".new-address").each(function() {
       var inputtedStreet = $(this).find("input.new-street").val();
@@ -107,7 +106,6 @@ $(document).ready(function() {
       var inputtedState = $(this).find("input.new-state").val();
       var inputtedType = $(this).find("#address-type :selected").text();
       //  $(this).find("input.new-type").val();
-      console.log(inputtedType);
 
       newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedType);
 
@@ -122,7 +120,7 @@ $(document).ready(function() {
     //click on contact name
     $(".contact").last().click(function() {
 
-      $("#show-contact").show();
+      $("#show-contact").fadeIn()
       $("#show-contact h2").text(newContact.firstName);
       $(".first-name").text(newContact.firstName);
       $(".last-name").text(newContact.lastName);
@@ -133,8 +131,6 @@ $(document).ready(function() {
       });
 
     });
-
-
 
     resetFields();
 
