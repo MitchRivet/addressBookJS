@@ -27,6 +27,7 @@ function resetFields() {
   $("input.new-city").val("");
   $("input.new-state").val("");
   $("input.address-type").val("");
+  $("div.new-address").not(":first").remove();
 }
 
 function createNewFields() {
@@ -101,6 +102,8 @@ $(document).ready(function() {
 
       newContact.addresses.push(newAddress);
 
+
+
     });
 
     listContacts();
@@ -120,6 +123,7 @@ $(document).ready(function() {
     });
 
     resetFields();
+
 
   });
 });
