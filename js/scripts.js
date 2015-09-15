@@ -76,14 +76,25 @@ function saveContacts() {
 // }
 
 function listContacts() {
-  $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+
+    $("ul#contacts").append("<div class='fademe1'><li><span class='contact'>" + newContact.fullName() + "</span></li></div>");
+    $(".fademe1").hide().fadeIn();
+    $( ".fademe1" ).removeClass('fademe1').addClass('fadedme');
+
 }
+// $( "#book" ).fadeIn( "slow", function() {
+//    // Animation complete
+//  });
 
 //
 $(document).ready(function() {
   //add another address button
   $("#add-address").click(function() {
     createNewFields();
+  });
+
+  $("#poop").click(function() {
+    $("#added_poop").hide().fadeIn();
   });
   //submit "add" and create new contact obj.
   $("form#new-contact").submit(function(event) {
@@ -107,6 +118,7 @@ $(document).ready(function() {
     });
 
     listContacts();
+
     //click on contact name
     $(".contact").last().click(function() {
 
@@ -121,6 +133,8 @@ $(document).ready(function() {
       });
 
     });
+
+
 
     resetFields();
 
